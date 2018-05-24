@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+	BrowserRouter as Router,
+	Route, Link, NavLink
+} from 'react-router-dom';
 
 class Header extends React.Component {
 	render() {
@@ -6,7 +10,7 @@ class Header extends React.Component {
 			<header>
 				<h1>Prince</h1>
 				<h1>Edward</h1>
-				<h1>Country</h1>
+				<h1>County</h1>
 				<h1>Wineries</h1>
 			</header>
 		)
