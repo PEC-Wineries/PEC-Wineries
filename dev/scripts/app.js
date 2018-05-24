@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Header from './Header';
 
 class App extends React.Component {
 	constructor() {
@@ -40,6 +41,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
+				<Header />
 				<form action="" onSubmit={this.handleSubmit} >
 				<input onChange={this.handleInput} value={this.search} type="text"/>
 				</form>
