@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Map from './Map';
 import Header from './Header';
 
 class App extends React.Component {
@@ -50,9 +51,14 @@ class App extends React.Component {
 					return <li key={wine.id}>{wine.name}</li>
 				})}
 				</ul>
+				<Map />
 			</div>
 		)
 	}
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+
+
+
