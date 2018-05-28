@@ -9,6 +9,7 @@ import Rebase from "re-base";
 import firebase from "firebase";
 import Dashboard from "./Dashboard";
 import VineyardList from "./VineyardList";
+import LCBOmap from "./Map";
 import {
 	BrowserRouter as Router,
 	Route, Link
@@ -195,6 +196,13 @@ class App extends React.Component {
 				removeThisWine={this.removeThisWine}				
 			/>}
 		/>
+
+		<Route 
+			path="/vineyards/:wines"
+			render={ (props) => <LCBOmap {...props} />}
+		/>
+
+
         {/* <Login
           loginWithGoogle={this.loginWithGoogle}
           logout={this.logout}
