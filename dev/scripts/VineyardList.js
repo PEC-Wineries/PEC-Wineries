@@ -6,91 +6,112 @@ const vineyards = [];
 const east = [
   {
     name: "County Cider Company",
-    searchTerm: "County Cider Company"
+    searchTerm: "County Cider Company",
+    accessCode: "ccc"
   },
   {
     name: "Three Dog Wine",
-    searchTerm: "Three Dog"
+    searchTerm: "Three Dog",
+    accessCode: "three-dog"
   },
   {
     name: "Waupoos Estates Winery",
-    searchTerm: "Waupoos"
+    searchTerm: "Waupoos",
+    accessCode: "waupoos"
   }
 ];
 const central = [
   {
     name: "Lighthall Vineyards",
-    searchTerm: "Lighthall"
+    searchTerm: "Lighthall",
+    accessCode: "lighthall"
   },
   {
     name: "Black Prince Winery",
-    searchTerm: "Black Prince"
+    searchTerm: "Black Prince",
+    accessCode: "black-prince"
   },
   {
     name: "Huff Estates Winery",
-    searchTerm: "Huff"
+    searchTerm: "Huff",
+    accessCode: "huff"
   }
 ];
 const hillier = [
   {
     name: "By Chadsey's Cairns Winery",
-    searchTerm: "By Chadsey"
+    searchTerm: "By Chadsey",
+    accessCode: "bccw"
   },
   {
     name: "Casa - Dea Estates Winery",
-    searchTerm: "Casa-Dea"
+    searchTerm: "Casa-Dea",
+    accessCode: "casa-dea"
   },
   {
     name: "Closson Chase Vineyards",
-    searchTerm: "Closson Chase"
+    searchTerm: "Closson Chase",
+    accessCode: "closson"
   },
   {
     name: "The Grange of Prince Edward Vineyards and Winery",
-    searchTerm: "The Grange"
+    searchTerm: "The Grange",
+    accessCode: "grange"
   },
   {
     name: "Harwood Estate Vineyards",
-    searchTerm: "Harwood Estate"
+    searchTerm: "Harwood Estate",
+    accessCode: "harwood"
   },
   {
     name: "Hillier Creek Estates",
-    searchTerm: "Hillier Creek"
+    searchTerm: "Hillier Creek",
+    accessCode: "hillier"
   },
   {
     name: "Hinterland Wine Company",
-    searchTerm: "Hinterland"
+    searchTerm: "Hinterland",
+    accessCode: "hinterland"
   },
   {
     name: "Karlo Estates",
-    searchTerm: "Karlo Estates"
+    searchTerm: "Karlo Estates",
+    accessCode: "karlo"
   },
   {
     name: "Norman Hardie Winery",
-    searchTerm: "Norman Hardie"
+    searchTerm: "Norman Hardie",
+    accessCode: "hardie"
   },
   {
     name: "Redtail Vineyard",
-    searchTerm: "Redtail"
+    searchTerm: "Redtail",
+    accessCode: "redtail"
   },
   {
     name: "Rosehall Run Vineyards",
-    searchTerm: "Rosehall Run"
+    searchTerm: "Rosehall Run",
+    accessCode: "rosehall"
   },
   {
     name: "Sandbanks Estate Winery",
-    searchTerm: "Sandbanks"
+    searchTerm: "Sandbanks",
+    accessCode: "sandbanks"
   },
   {
     name: "Stanners Vineyard",
-    searchTerm: "Stanners"
+    searchTerm: "Stanners",
+    accessCode: "stanners"
   },
   {
     name: "Sugarbush Vineyards",
-    searchTerm: "Sugarbush"
+    searchTerm: "Sugarbush",
+    accessCode: "sugarbush"
   },
   {
     name: "Trail Estate Winery",
-    searchTerm: "Trail Estate Winery"
+    searchTerm: "Trail Estate Winery",
+    accessCode: "trail"
   }
 ];
 
