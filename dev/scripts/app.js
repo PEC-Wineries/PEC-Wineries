@@ -162,9 +162,15 @@ class App extends React.Component {
   }
   render() {
     return (
+	<Router>
       <div>
         <Header saved={this.state.saved} />
-        <Login
+		<Route exact path="/" component={VineyardList} />
+		<Route 
+			path="/vineyards/:wines" 
+			render={ (props) => <OneVineyard {...props} /> }
+		/>
+        {/* <Login
           loginWithGoogle={this.loginWithGoogle}
           logout={this.logout}
           loggedIn={this.state.loggedIn}
@@ -185,8 +191,9 @@ class App extends React.Component {
         <SavedWines
           saved={this.state.saved}
           removeThisWine={this.removeThisWine}
-        />
+        /> */}
       </div>
+	</Router>
     );
   }
 }
