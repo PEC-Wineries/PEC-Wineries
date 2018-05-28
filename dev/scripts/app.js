@@ -162,11 +162,36 @@ class App extends React.Component {
     return (
 	<Router>
       <div>
-        <Header saved={this.state.saved} />
+		<Route 
+			path="/" 
+			render={(props) => <Login {...props} 
+				loginWithGoogle={this.loginWithGoogle}
+				logout={this.logout}
+				loggedIn={this.state.loggedIn}
+				userName={this.state.userName}
+				user={this.state.user}
+				userImage={this.state.userImage}
+			/>} 
+		/>
+		<Route exact path="/" component={Header} />
 		<Route exact path="/" component={VineyardList} />
+		
 		<Route 
 			path="/vineyards/:wines" 
-			render={ (props) => <OneVineyard {...props} /> }
+			render={ (props) => <OneVineyard {...props} 
+				saveThisWine={this.saveThisWine}
+				saved={this.state.saved}
+				uid={this.state.uid}
+				loggedIn={this.state.loggedIn}
+			/> }
+		/>
+
+		<Route 
+			path="/vineyards/:wines"
+			render={ (props) => <SavedWines {...props}
+				saved={this.state.saved}
+				removeThisWine={this.removeThisWine}				
+			/>}
 		/>
         {/* <Login
           loginWithGoogle={this.loginWithGoogle}
@@ -176,9 +201,6 @@ class App extends React.Component {
           user={this.state.user}
           userImage={this.state.userImage}
         />
-        <form action="" onSubmit={this.handleSubmit}>
-          <input onChange={this.handleInput} value={this.search} type="text" />
-        </form>
         <OneVineyard
           wines={this.state.wines}
           saveThisWine={this.saveThisWine}
