@@ -16,7 +16,6 @@ class Map extends React.Component {
         }
         this.getLCBO = this.getLCBO.bind(this);
         this.handleLocate = this.handleLocate.bind(this);
-        
     }
     // === API Request to find LCBOs in the area near the coordinates stored in 'const location'
     getLCBO(location) {
@@ -45,16 +44,13 @@ class Map extends React.Component {
                 // console.log(res);
                 this.setState({
                     lcboList: res
-                
                 })
-
             })
             
             .catch((err) => {
                 console.log('This is the error response');
                 console.log(err);
             });
-
     }
     // === Using the Google Geolocation API request to get coordinates of the user - to then be used to locate the users coordinates to then be passed to ReactGoogleMap to find LCBOs in the area
     // handleLocate(e, newPostion) {

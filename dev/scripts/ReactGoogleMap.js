@@ -51,7 +51,6 @@ class ReactGoogleMap extends React.Component {
                 //     console.log(this.props.nearbyStores.data.results);
                 // }
             }
-
         }
     }
 

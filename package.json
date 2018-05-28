@@ -17,6 +17,8 @@
     "babelify": "^7.3.0",
     "browser-sync": "^2.18.6",
     "browserify": "^13.3.0",
+    "connect-history-api-fallback": "^1.5.0",
+    "firebase": "^5.0.4",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-notify": "^2.2.0",
@@ -25,11 +27,13 @@
     "qs": "^6.5.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-router-dom": "^4.2.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
     "jquery": "^3.3.1",
-    "node-sass": "^4.7.1"
+    "node-sass": "^4.7.1",
+    "re-base": "^3.2.3"
   }
 }
