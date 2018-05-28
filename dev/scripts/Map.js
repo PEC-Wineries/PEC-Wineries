@@ -31,8 +31,9 @@ class Map extends React.Component {
                         key: 'AIzaSyAjM2iAW0ZIFyotMj1JJV53Inq595q54kw',
                         location: location,
                         keyword: 'LCBO',
-                        rankby: 'distance',
-                        opennow: true
+                        // radius: 1000,
+                        rankby: 'distance'
+                        // opennow: true
                     },
                 }    
             }
