@@ -6,7 +6,7 @@ class ReactGoogleMap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pos: { lat: 44.410970, lng: -79.692821 }
+            pos: { lat: 44.012656, lng: -77.252042 },
         }
         this.updateMap = this.updateMap.bind(this);
         this.lcboMarkers = this.lcboMarkers.bind(this);
@@ -57,7 +57,7 @@ class ReactGoogleMap extends React.Component {
 
 // === Rendering the Google Map to the page ===
     componentDidMount() {
-        this.map = new google.maps.Map(document.getElementById('map'), { zoom: 16, center: this.state.pos });
+        this.map = new google.maps.Map(document.getElementById('map'), { zoom: 10, center: this.state.pos });
         this.marker = new google.maps.Marker({ position: this.state.pos, map: this.map });
         }
     componentDidUpdate(pos) {
@@ -65,6 +65,7 @@ class ReactGoogleMap extends React.Component {
         this.updateMap(this.props.newCoordinate);
         // this.marker.updateMap(this.props.newCoordinate);
         this.lcboMarkers(this.props.newCoordinate);
+        this.map.setZoom(16);
     }
     render(){
         return (

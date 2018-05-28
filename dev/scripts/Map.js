@@ -11,7 +11,7 @@ class Map extends React.Component {
     constructor() {
         super();
         this.state = {
-            pos: "43.945467,-77.404235",
+            pos: "",
             lcboList: {}      
         }
         this.getLCBO = this.getLCBO.bind(this);
