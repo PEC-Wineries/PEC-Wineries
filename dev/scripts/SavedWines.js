@@ -6,13 +6,13 @@ import {
   NavLink
 } from "react-router-dom";
 
-class OneVineyard extends React.Component {
+class SavedWines extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="vineyard-wines">
+        <div className="saved-wines">
           {/* {console.log(this.props.wines)} */}
-          {this.props.wines.map(wine => {
+          {this.props.saved.map(wine => {
             return (
               <div className="display-wine" key={wine.id}>
                 <div
@@ -39,8 +39,8 @@ class OneVineyard extends React.Component {
                     >
                       {wine.tasting_note}
                     </li>
-                    <button onClick={() => this.props.saveThisWine(wine)}>
-                      Save This Wine
+                    <button onClick={() => this.props.removeThisWine(wine)}>
+                      Remove This Wine
                     </button>
                   </ul>
                 </div>
@@ -53,4 +53,4 @@ class OneVineyard extends React.Component {
   }
 }
 
-export default OneVineyard;
+export default SavedWines;
