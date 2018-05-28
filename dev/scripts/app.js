@@ -9,10 +9,7 @@ import Rebase from "re-base";
 import firebase from "firebase";
 import Dashboard from "./Dashboard";
 import VineyardList from "./VineyardList";
-import {
-	BrowserRouter as Router,
-	Route, Link
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 //Firebase Configuration
 const config = {
@@ -117,6 +114,7 @@ class App extends React.Component {
         q: this.state.search
       }
     }).then(res => {
+      console.log(res);
       this.setState({
         wines: res.data.result
       });

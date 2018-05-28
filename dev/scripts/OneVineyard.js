@@ -9,15 +9,13 @@ import axios from "axios";
 import Login from "./Login";
 
 class OneVineyard extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			wines: []
-		}
-	}
-	componentDidMount() {
-	
-	}
+  constructor() {
+    super();
+    this.state = {
+      wines: []
+    };
+  }
+  componentDidMount() {}
   render() {
     return (
       <React.Fragment>
@@ -43,6 +41,12 @@ class OneVineyard extends React.Component {
                   <ul>
                     <li className="one-wine-name" key={`name = ${wine.id}`}>
                       {wine.name}
+                    </li>
+                    <li
+                      className="one-wine-type"
+                      key={`type = ${wine.varietal}`}
+                    >
+                      {wine.varietal}
                     </li>
                     <li
                       className="one-wine-description"
