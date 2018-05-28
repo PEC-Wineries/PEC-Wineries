@@ -11,12 +11,14 @@ class Map extends React.Component {
     constructor() {
         super();
         this.state = {
-            pos: "43.945467,-77.404235",       
+            pos: "43.945467,-77.404235",
+            lcboList: {}      
         }
         this.getLCBO = this.getLCBO.bind(this);
         this.handleLocate = this.handleLocate.bind(this);
+        
     }
-// === API Request to find LCBOs in the area near the coordinates stored in 'const location'
+    // === API Request to find LCBOs in the area near the coordinates stored in 'const location'
     getLCBO(location) {
         axios({
             url: 'http://proxy.hackeryou.com',
@@ -39,8 +41,13 @@ class Map extends React.Component {
             }
             )
             .then((res) => {
-                console.log('This is the then response');
-                console.log(res);
+                // console.log('This is the then response');
+                // console.log(res);
+                this.setState({
+                    lcboList: res
+                
+                })
+
             })
             
             .catch((err) => {
@@ -69,6 +76,7 @@ class Map extends React.Component {
                 >GEOLOCATE</button>
                 <ReactGoogleMap 
                     newCoordinate = {this.state.pos}
+                    nearbyStores = {this.state.lcboList}
                 />
             </div>
         )
