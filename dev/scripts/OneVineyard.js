@@ -5,6 +5,7 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import Login from "./Login";
 
 class OneVineyard extends React.Component {
   render() {
@@ -39,9 +40,11 @@ class OneVineyard extends React.Component {
                     >
                       {wine.tasting_note}
                     </li>
-                    <button onClick={() => this.props.saveThisWine(wine)}>
-                      Save This Wine
-                    </button>
+                    {this.props.loggedIn === true ? (
+                      <button onClick={() => this.props.saveThisWine(wine)}>
+                        Save This Wine
+                      </button>
+                    ) : null}
                   </ul>
                 </div>
               </div>

@@ -28,6 +28,7 @@ class Login extends React.Component {
             user={this.props.user}
             loggedIn={this.props.loggedIn}
             userName={this.props.userName}
+            userImage={this.props.userImage}
           />
         )}
       </div>

@@ -5,13 +5,14 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import firebase from "firebase";
+import Rebase from "re-base";
 
 class SavedWines extends React.Component {
   render() {
     return (
       <React.Fragment>
         <div className="saved-wines">
-          {/* {console.log(this.props.wines)} */}
           {this.props.saved.map(wine => {
             return (
               <div className="display-wine" key={wine.id}>

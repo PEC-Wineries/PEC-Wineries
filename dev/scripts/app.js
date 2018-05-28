@@ -32,7 +32,9 @@ class App extends React.Component {
       loggedIn: false,
       user: {},
       userName: "",
-      uid: "default"
+      uid: "default",
+      userImage: "none"
+      //The states listed below are for the form section that will be sent to each vineyard for wine tours
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -50,19 +52,23 @@ class App extends React.Component {
             loggedIn: true,
             user: user,
             userName: user.displayName,
-            uid: user.uid
+            uid: user.uid,
+            userImage: user.photoURL
           },
           () => {
-            // console.log(`After Function: ${this.state.uid}`);
             this.dbRef = firebase.database().ref(this.state.uid);
           }
         );
         this.dbRef.on("value", snapshot => {
-          console.log(snapshot.val());
+          const data = snapshot.val();
+          const savedArray = [];
+          for (let item in data) {
+            savedArray.push(data[item]);
+          }
+          this.setState({
+            saved: savedArray
+          });
         });
-        // console.log(this.state.user);
-        // console.log(this.state.userName);
-        // console.log(this.state.uid);
       } else {
         console.log("user logged out");
         this.setState({ loggedIn: false });
@@ -76,9 +82,7 @@ class App extends React.Component {
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then(user => {
-        // console.log(user);
-      })
+      .then(user => {})
       //Error catcher
       .catch(err => {
         console.log(err);
@@ -88,6 +92,9 @@ class App extends React.Component {
     firebase.auth().signOut();
     console.log("Signed Out");
     this.dbRef.off();
+    this.setState({
+      saved: []
+    });
   }
 
   handleInput(e) {
@@ -115,6 +122,7 @@ class App extends React.Component {
   saveThisWine(wine) {
     //Take a copy of state
     const savedState = this.state.saved;
+    const dbRef = firebase.database().ref(this.state.uid);
     //add to saved object and prevent duplicates
     let repeat = false;
     for (let i = 0; i < savedState.length; i++) {
@@ -124,17 +132,19 @@ class App extends React.Component {
     }
     if (repeat === false) {
       savedState.push(wine);
+      dbRef.push(wine);
     }
     //Update state
     this.setState({
       saved: savedState
     });
-    // console.log(this.state.saved);
   }
 
   removeThisWine(wine) {
     const savedState = this.state.saved;
+    const dbRef = firebase.database().ref(this.state.uid);
     for (let i = 0; i < savedState.length; i++) {
+      dbRef.remove();
       if (wine === savedState[i]) {
         savedState.splice(i, 1);
       }
@@ -142,6 +152,9 @@ class App extends React.Component {
     this.setState({
       saved: savedState
     });
+    for (let i = 0; i < savedState.length; i++) {
+      dbRef.push(savedState[i]);
+    }
   }
   render() {
     return (
@@ -153,6 +166,7 @@ class App extends React.Component {
           loggedIn={this.state.loggedIn}
           userName={this.state.userName}
           user={this.state.user}
+          userImage={this.state.userImage}
         />
         <form action="" onSubmit={this.handleSubmit}>
           <input onChange={this.handleInput} value={this.search} type="text" />
@@ -160,6 +174,9 @@ class App extends React.Component {
         <OneVineyard
           wines={this.state.wines}
           saveThisWine={this.saveThisWine}
+          saved={this.state.saved}
+          uid={this.state.uid}
+          loggedIn={this.state.loggedIn}
         />
         <SavedWines
           saved={this.state.saved}
