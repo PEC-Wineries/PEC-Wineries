@@ -5,15 +5,15 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
-import Login from "./Login";
+import firebase from "firebase";
+import Rebase from "re-base";
 
-class OneVineyard extends React.Component {
+class SavedWines extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="vineyard-wines">
-          {/* {console.log(this.props.wines)} */}
-          {this.props.wines.map(wine => {
+        <div className="saved-wines">
+          {this.props.saved.map(wine => {
             return (
               <div className="display-wine" key={wine.id}>
                 <div
@@ -40,11 +40,9 @@ class OneVineyard extends React.Component {
                     >
                       {wine.tasting_note}
                     </li>
-                    {this.props.loggedIn === true ? (
-                      <button onClick={() => this.props.saveThisWine(wine)}>
-                        Save This Wine
-                      </button>
-                    ) : null}
+                    <button onClick={() => this.props.removeThisWine(wine)}>
+                      Remove This Wine
+                    </button>
                   </ul>
                 </div>
               </div>
@@ -56,4 +54,4 @@ class OneVineyard extends React.Component {
   }
 }
 
-export default OneVineyard;
+export default SavedWines;
