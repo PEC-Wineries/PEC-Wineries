@@ -7,7 +7,6 @@ import ReactGoogleMap from './ReactGoogleMap';
 
 // May have to place handleLocate in app.js because we can't get the state outside this component, pass geolocate into a prop to be used inside Map.js
 
-
 class Map extends React.Component {
     constructor() {
         super();
@@ -56,7 +55,7 @@ class Map extends React.Component {
             const location = `${pos.coords.latitude},${pos.coords.longitude}`;
             this.getLCBO(location);
             this.setState({
-                pos: `${pos.coords.latitude},${pos.coords.longitude}`
+                pos: {lat: pos.coords.latitude, lng: pos.coords.longitude}
             })
         })
     }
