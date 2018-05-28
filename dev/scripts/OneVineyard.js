@@ -15,13 +15,26 @@ class OneVineyard extends React.Component {
       wines: []
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    axios({
+      url: "https://lcboapi.com/products",
+      params: {
+        access_key:
+          "MDoxNDEyMWE4Ni01ZGZiLTExZTgtYTVjYi1jN2JlMmFhMTZiNmQ6SzlralhKWGRwNWVXclp0R1VhcEJFNUU3WWRaTFVLTWkxRW5l",
+        q: this.props.match.params.wines
+      }
+    }).then(res => {
+      this.setState({
+        wines: res.data.result
+      });
+    });
+  }
   render() {
     return (
       <React.Fragment>
         <div className="vineyard-wines">
           {/* {console.log(this.props.wines)} */}
-          {this.props.wines.map(wine => {
+          {this.state.wines.map(wine => {
             return (
               <div className="display-wine" key={wine.id}>
                 <div

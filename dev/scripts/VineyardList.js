@@ -6,91 +6,75 @@ const vineyards = [];
 const east = [
   {
     name: "County Cider Company",
-    searchTerm: ""
+    searchTerm: "County Cider Company"
   },
   {
     name: "Three Dog Wine",
-    searchTerm: ""
+    searchTerm: "Three Dog"
   },
   {
     name: "Waupoos Estates Winery",
-    searchTerm: ""
+    searchTerm: "Waupoos"
   }
 ];
 const central = [
   {
     name: "Lighthall Vineyards",
-    searchTerm: ""
+    searchTerm: "Lighthall"
   },
   {
     name: "Black Prince Winery",
-    searchTerm: ""
+    searchTerm: "Black Prince"
   },
   {
     name: "Huff Estates Winery",
-    searchTerm: ""
+    searchTerm: "Huff"
   }
 ];
 const hillier = [
   {
     name: "By Chadsey's Cairns Winery",
-    searchTerm: ""
+    searchTerm: "By Chadsey"
   },
   {
     name: "Casa - Dea Estates Winery",
-    searchTerm: ""
+    searchTerm: "Casa-Dea"
   },
   {
     name: "Closson Chase Vineyards",
-    searchTerm: ""
-  },
-  {
-    name: "Domaine Darius",
-    searchTerm: ""
+    searchTerm: "Closson Chase"
   },
   {
     name: "The Grange of Prince Edward Vineyards and Winery",
-    searchTerm: ""
+    searchTerm: "The Grange"
   },
   {
     name: "Harwood Estate Vineyards",
-    searchTerm: ""
+    searchTerm: "Harwood Estate"
   },
   {
     name: "Hillier Creek Estates",
-    searchTerm: ""
+    searchTerm: "Hillier Creek"
   },
   {
     name: "Hinterland Wine Company",
-    searchTerm: ""
-  },
-  {
-    name: "Hubbs Creek Vineyard",
-    searchTerm: ""
+    searchTerm: "Hinterland"
   },
   {
     name: "Karlo Estates",
-    searchTerm: ""
-  },
-  {
-    name: "Lacey Estates Winery",
-    searchTerm: ""
-  },
-  {
-    name: "Lift Haus Winery",
-    searchTerm: ""
+    searchTerm: "Karlo Estates"
   },
   {
     name: "Norman Hardie Winery",
-    searchTerm: ""
+    searchTerm: "Norman Hardie"
   },
   {
     name: "Redtail Vineyard",
-    searchTerm: ""
+    searchTerm: "Redtail"
   },
   {
     name: "Rosehall Run Vineyards",
-    searchTerm: ""
+    searchTerm: "Rosehall Run"
   },
   {
     name: "Sandbanks Estate Winery",
@@ -98,23 +82,15 @@ const hillier = [
   },
   {
     name: "Stanners Vineyard",
-    searchTerm: ""
+    searchTerm: "Stanners"
   },
   {
     name: "Sugarbush Vineyards",
-    searchTerm: ""
-  },
-  {
-    name: "Terra Estate Winery",
-    searchTerm: ""
-  },
-  {
-    name: "The Old Third Vineyard",
-    searchTerm: ""
+    searchTerm: "Sugarbush"
   },
   {
     name: "Trail Estate Winery",
-    searchTerm: ""
+    searchTerm: "Trail Estate Winery"
   }
 ];
 
@@ -136,7 +112,10 @@ class VineyardList extends React.Component {
               <div className="vineyard-containers">
                 {region.map(vineyard => {
                   return (
-                    <Link to="/vylist" className="vineyard-name">
+                    <Link
+                      to={`/vineyards/${vineyard.searchTerm}`}
+                      className="vineyard-name"
+                    >
                       {vineyard.name}
                     </Link>
                   );
