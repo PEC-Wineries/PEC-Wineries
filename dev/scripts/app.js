@@ -70,7 +70,6 @@ class App extends React.Component {
           });
         });
       } else {
-        console.log("user logged out");
         this.setState({ loggedIn: false });
       }
     });
