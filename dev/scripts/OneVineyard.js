@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 import Login from "./Login";
+import WineTourForm from "./WineTourForm";
 
 class OneVineyard extends React.Component {
   constructor() {
@@ -78,6 +79,10 @@ class OneVineyard extends React.Component {
             );
           })}
         </div>
+        <WineTourForm
+          handleChange={this.props.handleChange}
+          submitTourForm={this.props.submitTourForm}
+        />
       </React.Fragment>
     );
   }

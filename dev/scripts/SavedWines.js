@@ -13,6 +13,7 @@ class SavedWines extends React.Component {
     return (
       <React.Fragment>
         <div className="saved-wines">
+          <h2>SAVED WINES</h2>
           {this.props.saved.map(wine => {
             return (
               <div className="display-wine" key={wine.id}>

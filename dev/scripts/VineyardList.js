@@ -136,6 +136,9 @@ class VineyardList extends React.Component {
                     <Link
                       to={`/vineyards/${vineyard.searchTerm}`}
                       className="vineyard-name"
+                      onClick={() =>
+                        this.props.getAccessCode(vineyard.accessCode)
+                      }
                     >
                       {vineyard.name}
                     </Link>
