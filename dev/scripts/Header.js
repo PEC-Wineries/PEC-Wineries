@@ -7,7 +7,7 @@ import {
 class Header extends React.Component {
 	render() {
 		return (
-			<header>
+			<header className="top-header">
 				<h1>Prince</h1>
 				<h1>Edward</h1>
 				<h1>County</h1>

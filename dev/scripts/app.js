@@ -2,13 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import Header from "./Header";
+import VineyardList from "./VineyardList";
 import OneVineyard from "./OneVineyard";
+import {
+	BrowserRouter as Router,
+	Route, Link
+} from 'react-router-dom';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      wines: [],
+      wines: ["hello", "hi"],
       search: ""
     };
 
@@ -40,13 +45,17 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Header />
-        <form action="" onSubmit={this.handleSubmit}>
-          <input onChange={this.handleInput} value={this.search} type="text" />
-        </form>
-        <OneVineyard wines={this.state.wines} />
-      </div>
+		<Router>
+			<div>
+				<Route exact path="/" component={Header}/>
+				<Route exact path="/" component={VineyardList} />
+				<Route 
+				exact path="/:"
+				render={(props) => <OneVineyard {...props} wines={this.state.wines} />}
+				/>
+				{/* <OneVineyard wines={this.state.wines} /> */}
+			</div>
+		</Router>
     );
   }
 }
