@@ -8,6 +8,11 @@ import SavedWines from "./SavedWines";
 import Rebase from "re-base";
 import firebase from "firebase";
 import Dashboard from "./Dashboard";
+import VineyardList from "./VineyardList";
+import {
+	BrowserRouter as Router,
+	Route, Link
+} from 'react-router-dom';
 
 //Firebase Configuration
 const config = {

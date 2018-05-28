@@ -5,9 +5,19 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import axios from "axios";
 import Login from "./Login";
 
 class OneVineyard extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			wines: []
+		}
+	}
+	componentDidMount() {
+	
+	}
   render() {
     return (
       <React.Fragment>

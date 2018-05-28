@@ -1,0 +1,58 @@
+.vineyard-list {
+	height: 100vh;
+	background: #fff;
+	
+	h1 {
+		line-height: 50px;
+	}
+
+	a {
+		font-family: 'Tangerine', cursive;
+		text-decoration: none;
+		color: #000;
+		font-size: 35px;
+	}
+
+	.region-container {
+		text-transform: capitalize;
+	}
+
+	.east, .central {
+		height: 30vh;
+
+		.vineyard-name {
+			// width: calc(100%/3);
+			display: block;
+			position: absolute;
+			top: 25%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		.vineyard-name:nth-of-type(2) {
+			// left: calc(100%/3);
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		.vineyard-name:nth-of-type(3) {
+			// left: calc(100%/1.5);
+			top: 75%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	.hillier {
+		height: 40vh;
+	}
+
+	.vineyard-containers {
+		position: relative;
+		height: calc(100% - 50px);
+		overflow-y: auto;
+	}
+
+	.vineyard-name {
+		text-align: center;
+		display: block;
+	}
+}
+
