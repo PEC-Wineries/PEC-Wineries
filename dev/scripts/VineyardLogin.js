@@ -8,7 +8,7 @@ class VineyardLogin extends React.Component {
         <form action="" id="vineyardLogin">
           <label htmlFor="vineyardLogin">Vineyard Login: </label>
           <input
-            type="password"
+            type="text"
             placeholder="Access Code"
             id="vineyardLogin"
             name="vineyardLogin"
