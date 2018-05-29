@@ -212,7 +212,6 @@ class App extends React.Component {
   }
 
   vineyardLocation(lat, lng) {
-	  console.log(lat, lng);
 	  this.setState({
 		  vineyardLat: lat,
 		  vineyardLng: lng
