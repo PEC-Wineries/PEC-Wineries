@@ -7,28 +7,29 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 import Login from "./Login";
+import WineTourForm from "./WineTourForm";
 
 class OneVineyard extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			wines: []
-		}
-	}
-	componentDidMount() {
-		axios({
-			url: "https://lcboapi.com/products",
-			params: {
-				access_key:
-					"MDoxNDEyMWE4Ni01ZGZiLTExZTgtYTVjYi1jN2JlMmFhMTZiNmQ6SzlralhKWGRwNWVXclp0R1VhcEJFNUU3WWRaTFVLTWkxRW5l",
-				q: this.props.match.params.wines
-			}
-		}).then(res => {
-			this.setState({
-				wines: res.data.result
-			});
-		});
-	}
+  constructor() {
+    super();
+    this.state = {
+      wines: []
+    };
+  }
+  componentDidMount() {
+    axios({
+      url: "https://lcboapi.com/products",
+      params: {
+        access_key:
+          "MDoxNDEyMWE4Ni01ZGZiLTExZTgtYTVjYi1jN2JlMmFhMTZiNmQ6SzlralhKWGRwNWVXclp0R1VhcEJFNUU3WWRaTFVLTWkxRW5l",
+        q: this.props.match.params.wines
+      }
+    }).then(res => {
+      this.setState({
+        wines: res.data.result
+      });
+    });
+  }
   render() {
     return (
       <React.Fragment>
@@ -56,6 +57,12 @@ class OneVineyard extends React.Component {
                       {wine.name}
                     </li>
                     <li
+                      className="one-wine-type"
+                      key={`type = ${wine.varietal}`}
+                    >
+                      {wine.varietal}
+                    </li>
+                    <li
                       className="one-wine-description"
                       key={`description = ${wine.id}`}
                     >
@@ -72,6 +79,10 @@ class OneVineyard extends React.Component {
             );
           })}
         </div>
+        <WineTourForm
+          handleChange={this.props.handleChange}
+          submitTourForm={this.props.submitTourForm}
+        />
       </React.Fragment>
     );
   }
