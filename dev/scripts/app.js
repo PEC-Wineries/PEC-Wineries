@@ -202,7 +202,8 @@ class App extends React.Component {
   }
 
   vineyardCodeChange(e) {
-    const vineyardCode = e.target.value;
+	const vineyardCode = e.target.value;
+	console.log(vineyardCode);
     this.setState({
       vineyardAccessCode: vineyardCode
     });
@@ -210,7 +211,7 @@ class App extends React.Component {
 
   checkVineyard(e) {
     e.preventDefault();
-    document.getElementById("vineyardLogin").reset();
+    document.getElementById("vineyardLoginForm").reset();
   }
 
   vineyardLocation(lat, lng) {
@@ -240,12 +241,16 @@ class App extends React.Component {
             )}
           />
           {/* Added this section - needs to be routed */}
-          <VineyardLogin
+          {/* <Route
+			path="/"
+			render={ props => (
+			<VineyardLogin
+			{...props}
             vineyardCodeChange={this.vineyardCodeChange}
             checkVineyard={this.checkVineyard}
             vineyardAccessCode={this.state.vineyardAccessCode}
-          />
-
+          />)}
+			/> */}
           <Route exact path="/" render={() => <Header />} />
 
           <Route
