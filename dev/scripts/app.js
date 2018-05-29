@@ -47,7 +47,7 @@ class App extends React.Component {
         notes: ""
       },
       accessCode: "",
-      vineyardAccessCode: "huff"
+      vineyardAccessCode: "none"
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -210,6 +210,11 @@ class App extends React.Component {
     document.getElementById("vineyardLogin").reset();
   }
 
+  vineyardLocation(e, ) {
+	  e.preventDefault();
+
+  }
+
   render() {
     return (
       <Router>
@@ -263,6 +268,16 @@ class App extends React.Component {
             )}
           />
 
+			<Route
+				path="/vineyards/:wines"
+				render={props => (
+					<LCBOmap
+						{...props}
+						
+					/>
+				)}
+			/>
+
           <Route
             path="/vineyards/:wines"
             render={props => (
@@ -273,6 +288,9 @@ class App extends React.Component {
               />
             )}
           />
+
+		
+
           {/* <Login
           loginWithGoogle={this.loginWithGoogle}
           logout={this.logout}
