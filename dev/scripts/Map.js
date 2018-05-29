@@ -73,6 +73,8 @@ class Map extends React.Component {
                 <ReactGoogleMap 
                     newCoordinate = {this.state.pos}
 					nearbyStores = {this.state.lcboList}
+					initialLat= {this.props.lat}
+					initialLng= {this.props.lng}
                 />
             </div>
         )
