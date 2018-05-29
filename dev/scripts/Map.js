@@ -11,12 +11,20 @@ class Map extends React.Component {
     constructor() {
         super();
         this.state = {
-            pos: "",
+			pos: { lat: 0 , lng: 0},
             lcboList: {}      
         }
         this.getLCBO = this.getLCBO.bind(this);
         this.handleLocate = this.handleLocate.bind(this);
-    }
+	}
+	componentDidMount() {
+		this.setState({
+			pos: {
+				lat: this.props.lat,
+				lng: this.props.lng
+			}
+		})
+	}
     // === API Request to find LCBOs in the area near the coordinates stored in 'const location'
     getLCBO(location) {
         axios({
@@ -64,6 +72,7 @@ class Map extends React.Component {
         })
     }
     render () {
+		console.log(this.props);
         return (
             <div>
 {/* button with onClick to find the users location coordinates */}
