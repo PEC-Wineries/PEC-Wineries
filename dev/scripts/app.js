@@ -9,11 +9,9 @@ import Rebase from "re-base";
 import firebase from "firebase";
 import Dashboard from "./Dashboard";
 import VineyardList from "./VineyardList";
+import VineyardLogin from "./VineyardLogin";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import LCBOmap from "./Map";
-import {
-	BrowserRouter as Router,
-	Route, Link
-} from 'react-router-dom';
 
 //Firebase Configuration
 const config = {
@@ -38,17 +36,29 @@ class App extends React.Component {
       loggedIn: false,
       user: {},
       userName: "",
-      uid: "default",
-      userImage: "none"
+      uid: "placeholder",
+      userImage: "none",
       //The states listed below are for the form section that will be sent to each vineyard for wine tours
+
+      oneSubmission: {
+        guestName: "",
+        guests: "",
+        date: "",
+        notes: ""
+      },
+      accessCode: "",
+      vineyardAccessCode: "huff"
     };
 
-    this.handleInput = this.handleInput.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.saveThisWine = this.saveThisWine.bind(this);
     this.removeThisWine = this.removeThisWine.bind(this);
     this.logout = this.logout.bind(this);
     this.loginWithGoogle = this.loginWithGoogle.bind(this);
+    this.submitTourForm = this.submitTourForm.bind(this);
+    this.getAccessCode = this.getAccessCode.bind(this);
+    this.vineyardCodeChange = this.vineyardCodeChange.bind(this);
   }
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
@@ -102,10 +112,12 @@ class App extends React.Component {
     });
   }
 
-  handleInput(e) {
-    e.preventDefault();
+  handleChange(e) {
+    //This takes the value of the wine tour form and saves changes to the corresponding state
+    let oneSubmission = Object.assign({}, this.state.oneSubmission);
+    oneSubmission[e.target.id] = e.target.value;
     this.setState({
-      search: e.target.value
+      oneSubmission
     });
   }
   handleSubmit(e) {
@@ -118,10 +130,21 @@ class App extends React.Component {
         q: this.state.search
       }
     }).then(res => {
+      console.log(res);
       this.setState({
         wines: res.data.result
       });
     });
+  }
+
+  submitTourForm(e) {
+    e.preventDefault();
+    const dbRef = firebase.database().ref(this.state.accessCode);
+    dbRef.push(this.state.oneSubmission);
+    this.setState({
+      oneSubmission: {}
+    });
+    document.getElementById("wineTour").reset();
   }
 
   saveThisWine(wine) {
@@ -161,49 +184,96 @@ class App extends React.Component {
       dbRef.push(savedState[i]);
     }
   }
+
+  getAccessCode(token) {
+    const dbRef = firebase.database().ref(`${this.state.uid}/accessCode`);
+    dbRef.remove();
+    this.setState(
+      {
+        accessCode: token
+      },
+      () => {
+        dbRef.push(this.state.accessCode);
+      }
+    );
+  }
+
+  vineyardCodeChange(e) {
+    const vineyardCode = e.target.value;
+    this.setState({
+      vineyardAccessCode: vineyardCode
+    });
+  }
+
+  checkVineyard(e) {
+    e.preventDefault();
+    document.getElementById("vineyardLogin").reset();
+  }
+
   render() {
     return (
-	<Router>
-      <div>
-		<Route 
-			path="/" 
-			render={(props) => <Login {...props} 
-				loginWithGoogle={this.loginWithGoogle}
-				logout={this.logout}
-				loggedIn={this.state.loggedIn}
-				userName={this.state.userName}
-				user={this.state.user}
-				userImage={this.state.userImage}
-			/>} 
-		/>
-		<Route exact path="/" component={Header} />
-		<Route exact path="/" component={VineyardList} />
-		
-		<Route 
-			path="/vineyards/:wines" 
-			render={ (props) => <OneVineyard {...props} 
-				saveThisWine={this.saveThisWine}
-				saved={this.state.saved}
-				uid={this.state.uid}
-				loggedIn={this.state.loggedIn}
-			/> }
-		/>
+      <Router>
+        <div>
+          <Route
+            path="/"
+            render={props => (
+              <Login
+                {...props}
+                loginWithGoogle={this.loginWithGoogle}
+                logout={this.logout}
+                loggedIn={this.state.loggedIn}
+                userName={this.state.userName}
+                user={this.state.user}
+                userImage={this.state.userImage}
+              />
+            )}
+          />
+          {/* Added this section - needs to be routed */}
+          <VineyardLogin
+            vineyardCodeChange={this.vineyardCodeChange}
+            checkVineyard={this.checkVineyard}
+            vineyardAccessCode={this.state.vineyardAccessCode}
+          />
+          <Route exact path="/" render={() => <Header />} />
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <VineyardList {...props} getAccessCode={this.getAccessCode} />
+            )}
+          />
 
-		<Route 
-			path="/vineyards/:wines"
-			render={ (props) => <SavedWines {...props}
-				saved={this.state.saved}
-				removeThisWine={this.removeThisWine}				
-			/>}
-		/>
+          <Route
+            path="/vineyards/:wines"
+            render={props => (
+              <OneVineyard
+                {...props}
+                saveThisWine={this.saveThisWine}
+                saved={this.state.saved}
+                uid={this.state.uid}
+                loggedIn={this.state.loggedIn}
+                submission={this.state.submission}
+                name={this.state.guestName}
+                amount={this.state.amount}
+                date={this.state.date}
+                notes={this.state.notes}
+                handleChange={this.handleChange}
+                submitTourForm={this.submitTourForm}
+              />
+            )}
+          />
 
-		<Route 
-			path="/vineyards/:wines"
-			render={ (props) => <LCBOmap {...props} />}
-		/>
-
-
-        {/* <Login
+          <Route
+            path="/vineyards/:wines"
+            render={props => (
+              <SavedWines
+                {...props}
+                saved={this.state.saved}
+                removeThisWine={this.removeThisWine}
+              />
+            )}
+          />
+          {/* <Login
           loginWithGoogle={this.loginWithGoogle}
           logout={this.logout}
           loggedIn={this.state.loggedIn}
@@ -222,8 +292,8 @@ class App extends React.Component {
           saved={this.state.saved}
           removeThisWine={this.removeThisWine}
         /> */}
-      </div>
-	</Router>
+        </div>
+      </Router>
     );
   }
 }
