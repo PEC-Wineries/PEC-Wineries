@@ -11,6 +11,7 @@ import Dashboard from "./Dashboard";
 import VineyardList from "./VineyardList";
 import VineyardLogin from "./VineyardLogin";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import LCBOmap from "./Map";
 
 //Firebase Configuration
 const config = {
