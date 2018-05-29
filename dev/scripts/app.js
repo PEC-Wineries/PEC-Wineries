@@ -47,7 +47,9 @@ class App extends React.Component {
         notes: ""
       },
       accessCode: "",
-	  vineyardAccessCode: "none"
+	  vineyardAccessCode: "none",
+	  vineyardLat: 0,
+	  vineyardLng: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -212,6 +214,7 @@ class App extends React.Component {
   }
 
   vineyardLocation(lat, lng) {
+	  console.log(lat,lng);
 	  this.setState({
 		  vineyardLat: lat,
 		  vineyardLng: lng
