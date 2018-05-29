@@ -72,7 +72,7 @@ class Map extends React.Component {
                 >Find nearby Stores</button>
                 <ReactGoogleMap 
                     newCoordinate = {this.state.pos}
-                    nearbyStores = {this.state.lcboList}
+					nearbyStores = {this.state.lcboList}
                 />
             </div>
         )
