@@ -47,9 +47,9 @@ class App extends React.Component {
         notes: ""
       },
       accessCode: "",
-	  vineyardAccessCode: "none",
-	  vineyardLat: 0,
-	  vineyardLng: 0,
+      vineyardAccessCode: "none",
+      vineyardLat: 0,
+      vineyardLng: 0
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -60,8 +60,8 @@ class App extends React.Component {
     this.loginWithGoogle = this.loginWithGoogle.bind(this);
     this.submitTourForm = this.submitTourForm.bind(this);
     this.getAccessCode = this.getAccessCode.bind(this);
-	this.vineyardCodeChange = this.vineyardCodeChange.bind(this);
-	  this.vineyardLocation = this.vineyardLocation.bind(this);
+    this.vineyardCodeChange = this.vineyardCodeChange.bind(this);
+    this.vineyardLocation = this.vineyardLocation.bind(this);
   }
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
@@ -214,11 +214,11 @@ class App extends React.Component {
   }
 
   vineyardLocation(lat, lng) {
-	  console.log(lat,lng);
-	  this.setState({
-		  vineyardLat: lat,
-		  vineyardLng: lng
-	  })
+    console.log(lat, lng);
+    this.setState({
+      vineyardLat: lat,
+      vineyardLng: lng
+    });
   }
 
   render() {
@@ -245,17 +245,18 @@ class App extends React.Component {
             checkVineyard={this.checkVineyard}
             vineyardAccessCode={this.state.vineyardAccessCode}
           />
-         
-		  <Route exact path="/" render={() => <Header />} />
-         
-		  <Route
+
+          <Route exact path="/" render={() => <Header />} />
+
+          <Route
             exact
             path="/"
             render={props => (
-				<VineyardList {...props} 
-				getAccessCode={this.getAccessCode}
-				vineyardLocation={this.vineyardLocation}
-			  />
+              <VineyardList
+                {...props}
+                getAccessCode={this.getAccessCode}
+                vineyardLocation={this.vineyardLocation}
+              />
             )}
           />
 
@@ -279,30 +280,29 @@ class App extends React.Component {
             )}
           />
 
-			<Route
-				path="/vineyards/:wines"
-				render={props => (
-					<LCBOmap
-						{...props}
-						lat={this.state.vineyardLat}
-						lng={this.state.vineyardLng}
-						
-					/>
-				)}
-			/>
-
           <Route
             path="/vineyards/:wines"
             render={props => (
-              <SavedWines
+              <LCBOmap
                 {...props}
-                saved={this.state.saved}
-                removeThisWine={this.removeThisWine}
+                lat={this.state.vineyardLat}
+                lng={this.state.vineyardLng}
               />
             )}
           />
 
-		
+          <Route
+            path="/vineyards/:wines"
+            render={props =>
+              this.state.loggedIn === true ? (
+                <SavedWines
+                  {...props}
+                  saved={this.state.saved}
+                  removeThisWine={this.removeThisWine}
+                />
+              ) : null
+            }
+          />
 
           {/* <Login
           loginWithGoogle={this.loginWithGoogle}
