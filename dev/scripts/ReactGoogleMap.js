@@ -23,33 +23,20 @@ class ReactGoogleMap extends React.Component {
 
     lcboMarkers() {
         let infoWindow = new google.maps.InfoWindow(), marker, i;
-        // console.log((this.props.nearbyStores).data.results);
         let bounds = new google.maps.LatLngBounds();
         let stores = this.props.nearbyStores;
-        // let stores = async () => {
-        //     let wait = await this.props.nearbyStores
-        //     return wait;
-        // }
-        // console.log(stores); 
-    //    Looping through array of LCBOs and setting markers at their positions on Map
+
         if (stores.data != undefined) {
             for (i = 0; i < stores.data.results.length; i++) {
                 console.log(stores.data.results[i]);
                 const position = new google.maps.LatLng(stores.data.results[i].geometry.location.lat, stores.data.results[i].geometry.location.lng);
                 console.log(stores.data.results[i].geometry.location.lat, stores.data.results[i].geometry.location.lng);
-                // bounds.extend(position);
                 bounds.extend(this.props.newCoordinate);
                 marker = new google.maps.Marker({
-                    // position: this.props.newCoordinate,
                     position: position,
                     map: this.map,
                     title: stores.data.results[i][0]
-                    // title: markers[i][0]
                 });
-                console.log(marker);
-                // if (this.props.nearbyStores.data.results.length > 0) {
-                //     console.log(this.props.nearbyStores.data.results);
-                // }
             }
         }
     }
