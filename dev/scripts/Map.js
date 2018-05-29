@@ -67,12 +67,14 @@ class Map extends React.Component {
         return (
             <div>
 {/* button with onClick to find the users location coordinates */}
-                <button onClick={() => this.handleLocate(this.state.pos)}
+                <button className='userPosition' onClick={() => this.handleLocate(this.state.pos)}
                 // newCoordinate = {this.state.pos}
-                >GEOLOCATE</button>
+                >Find nearby Stores</button>
                 <ReactGoogleMap 
                     newCoordinate = {this.state.pos}
-                    nearbyStores = {this.state.lcboList}
+					nearbyStores = {this.state.lcboList}
+					initialLat= {this.props.lat}
+					initialLng= {this.props.lng}
                 />
             </div>
         )

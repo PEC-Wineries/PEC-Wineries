@@ -47,7 +47,7 @@ class App extends React.Component {
         notes: ""
       },
       accessCode: "",
-      vineyardAccessCode: "huff"
+	  vineyardAccessCode: "none"
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -58,7 +58,8 @@ class App extends React.Component {
     this.loginWithGoogle = this.loginWithGoogle.bind(this);
     this.submitTourForm = this.submitTourForm.bind(this);
     this.getAccessCode = this.getAccessCode.bind(this);
-    this.vineyardCodeChange = this.vineyardCodeChange.bind(this);
+	this.vineyardCodeChange = this.vineyardCodeChange.bind(this);
+	  this.vineyardLocation = this.vineyardLocation.bind(this);
   }
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
@@ -210,6 +211,14 @@ class App extends React.Component {
     document.getElementById("vineyardLogin").reset();
   }
 
+  vineyardLocation(lat, lng) {
+	  console.log(lat, lng);
+	  this.setState({
+		  vineyardLat: lat,
+		  vineyardLng: lng
+	  })
+  }
+
   render() {
     return (
       <Router>
@@ -234,12 +243,17 @@ class App extends React.Component {
             checkVineyard={this.checkVineyard}
             vineyardAccessCode={this.state.vineyardAccessCode}
           />
-          <Route exact path="/" render={() => <Header />} />
-          <Route
+         
+		  <Route exact path="/" render={() => <Header />} />
+         
+		  <Route
             exact
             path="/"
             render={props => (
-              <VineyardList {...props} getAccessCode={this.getAccessCode} />
+				<VineyardList {...props} 
+				getAccessCode={this.getAccessCode}
+				vineyardLocation={this.vineyardLocation}
+			  />
             )}
           />
 
@@ -263,6 +277,18 @@ class App extends React.Component {
             )}
           />
 
+			<Route
+				path="/vineyards/:wines"
+				render={props => (
+					<LCBOmap
+						{...props}
+						lat={this.state.vineyardLat}
+						lng={this.state.vineyardLng}
+						
+					/>
+				)}
+			/>
+
           <Route
             path="/vineyards/:wines"
             render={props => (
@@ -273,6 +299,9 @@ class App extends React.Component {
               />
             )}
           />
+
+		
+
           {/* <Login
           loginWithGoogle={this.loginWithGoogle}
           logout={this.logout}
