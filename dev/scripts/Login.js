@@ -19,14 +19,14 @@ class Login extends React.Component {
           </button>
         )}
         {/* The dashboard allows users to see wines they have saved on their profile. If they aren't logged in, they won't be able to see this section */}
-        {this.props.loggedIn === true && (
+        {this.props.loggedIn === true ? (
           <Dashboard
             user={this.props.user}
             loggedIn={this.props.loggedIn}
             userName={this.props.userName}
             userImage={this.props.userImage}
           />
-        )}
+        ) : <div className="test"></div>}
         {/* Turnary operator to display button if logged in */}
         {this.props.loggedIn === true ? (
           <button className="logoutButton" onClick={this.props.logout}>
