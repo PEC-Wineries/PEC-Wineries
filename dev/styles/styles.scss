@@ -7,6 +7,7 @@
 @import "login";
 @import "oneVineyard";
 @import "savedWines";
+@import "map";
 
 
 
@@ -50,14 +51,14 @@ h1, h2, h3, h4, h5, h5, ul, li, button, form, input, img, p {
 	border: 1px solid rgba(100,100,100, 0.9);
 }
 
-button, input#vineyardLogin, input#date, input#guestName, input#guests,  .wineButton, .userPosition {
-	padding: 6px 6px;
-	color: #a0d2cf;
-	background: rgba(50,50,50, 0.9);
-	border: 2px solid #7bb9b5;
-	border-radius: 10px;
-	box-shadow: 0 0 3px 0 rgba(25,25,25, 1);
-}
+// button, input#vineyardLogin, input#date, input#guestName, input#guests,  .wineButton, .userPosition {
+// 	padding: 6px 6px;
+// 	color: #a0d2cf;
+// 	background: rgba(50,50,50, 0.9);
+// 	border: 2px solid #7bb9b5;
+// 	border-radius: 10px;
+// 	box-shadow: 0 0 3px 0 rgba(25,25,25, 1);
+// }
 
 button[type=submit] {
 	border-radius: 0 10px 10px 0;

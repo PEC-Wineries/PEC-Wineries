@@ -26,7 +26,6 @@ const firebaseApp = firebase.initializeApp(config);
 
 const base = Rebase.createClass(firebaseApp.database());
 
-
 class App extends React.Component {
   constructor() {
     super();
@@ -66,7 +65,6 @@ class App extends React.Component {
     this.smoothScroll = this.smoothScroll.bind(this);
   }
   componentDidMount() {
-
     firebase.auth().onAuthStateChanged(user => {
       if (user != null) {
         this.setState(
@@ -116,6 +114,13 @@ class App extends React.Component {
     this.setState({
       saved: []
     });
+  }
+
+  smoothScroll(e) {
+    e.preventDefault();
+    document
+      .querySelector(".vineyard-list")
+      .scrollIntoView({ behavior: "smooth" });
   }
 
   handleChange(e) {
@@ -224,11 +229,7 @@ class App extends React.Component {
       vineyardLng: lng
     });
   }
-  smoothScroll() {
-    const whoKnows = document.getElementById("test")
-    console.log(whoKnows);
-    window.scrollTo(0, whoKnows.offsetTop);
-  }
+
   render() {
     return (
       <Router>
@@ -259,10 +260,13 @@ class App extends React.Component {
             vineyardAccessCode={this.state.vineyardAccessCode}
           />)}
 			/> */}
-            <Route exact path="/" render={(props) => (<Header
-              {...props} 
-              smoothScroll={this.smoothScroll}
-            />)} />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <Header {...props} smoothScroll={this.smoothScroll} />
+              )}
+            />
 
             <Route
               exact

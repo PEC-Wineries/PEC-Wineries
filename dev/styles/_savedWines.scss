@@ -7,7 +7,7 @@
     h1 {
         padding: 0 0 50px 0;
     }
-}
+
 
 .display-wine {
     // float: left;
@@ -16,8 +16,13 @@
     margin-bottom: 25px;
 	background-color: rgba(255, 255, 255, 1);
 	border-radius: 10px;
-	box-shadow: 0 15px 15px 0 rgba(25, 25, 25, 0.7);
-
+    box-shadow: 0 15px 15px 0 rgba(25, 25, 25, 0.7);
+    border: 5px solid $main;
+    transition: $tran;
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 25px 0 rgba(25, 25, 25, 0.7);
+        }
     .one-wine-description {
         font-size: 1rem;
         height: 40px;
@@ -53,6 +58,7 @@
                 // height: 45px;
                 white-space: nowrap;
                 overflow: hidden;
+                padding-bottom: 10px;
             }
             li.one-wine-type {
                 font-size: 1.5rem;
@@ -63,7 +69,19 @@
 		}
 	}
 
+}
+}
 
+.remove-wine {
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    background: $main;
+    color: white;
+    border-radius: 5px;
+    transition: $tran;
+    &:hover {
+        background: lighten($color: $main, $amount: 15);
+    }
 }
 
 #wineTour {

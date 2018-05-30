@@ -1,0 +1,14 @@
+#findNearby {
+    border: none;
+    transform: translateY(-50%);
+    padding: 5px 20px;
+    font-size: 1.8rem;
+    background: $accent;
+    color: white;
+    border-radius: 5px;
+    transition: $tran;
+    text-shadow: 1px 1px 5px #000;
+    &:hover {
+        background: darken($color: $accent, $amount: 15);
+    }
+}

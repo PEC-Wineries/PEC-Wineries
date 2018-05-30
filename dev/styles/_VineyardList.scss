@@ -25,6 +25,10 @@
 		border: 1px solid black;
 		margin: 0 0 10px 0;
 		width: 50%;
+		transition: .3s ease-in-out all;
+		&:hover {
+			background:$background;
+		}
 
 	}
 
