@@ -1,6 +1,9 @@
 .loginButton {
-    height: 30px;
-    right: 0;
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    z-index: 1;
+    transform: translateY(-50%);
 }
 
 
@@ -8,6 +11,10 @@
 .logoutButton {
     position: absolute;
     right: 20px;
-    top: 25px;
+    top: 50%;
     transform: translateY(-50%);
+}
+
+.test {
+    height: 60px;
 }

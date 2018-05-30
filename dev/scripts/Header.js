@@ -14,7 +14,7 @@ class Header extends React.Component {
         <div className="wrapper">
           <div className="title-text">
             <h1>Prince Edward County Vineyards</h1>
-            <button>Learn More</button>
+            <button onClick={this.props.smoothScroll}> Learn More</button>
           </div>
         </div>
       </header>

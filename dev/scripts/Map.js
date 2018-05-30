@@ -80,6 +80,7 @@ class Map extends React.Component {
               className="userPosition"
               onClick={() => this.handleLocate(this.state.pos)}
               // newCoordinate = {this.state.pos}
+              id="findNearby"
             >
               Find nearby Stores
             </button>

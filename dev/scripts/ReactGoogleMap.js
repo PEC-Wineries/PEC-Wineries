@@ -55,10 +55,7 @@ class ReactGoogleMap extends React.Component {
     }
     render(){
         return (
-            <div>
-                <h3>Map Component</h3>
                 <div id="map"></div>
-            </div>
         )
     }
 }
