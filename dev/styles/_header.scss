@@ -1,7 +1,26 @@
-h1 {
-	font-family: 'Tangerine', cursive;
-}
-
 .top-header {
-	height: 100vh;
+	height: calc(100vh - 30px);
+	min-height: 900px;
+
+	.wrapper {
+	position: relative;
+	height: calc(100vh - 30px);
+	min-height: 900px;
+	}
+
+	.title-text {
+		position: absolute;
+		left: 50%;
+		top: calc(50% - 30px);
+		transform: translate(-50%, -50%);
+		text-shadow: 1px 1px 10px #000;
+	}
+
+	button {
+		margin: 0 auto;
+		display: block;
+		margin-top: 50px;
+		font-size: 2rem;
+		padding: 15px 40px;
+	}
 }

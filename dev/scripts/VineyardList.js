@@ -72,13 +72,6 @@ const hillier = [
     lng: -77.393642
   },
   {
-    name: "The Grange of Prince Edward Vineyards and Winery",
-    searchTerm: "The Grange",
-    accessCode: "grange",
-    lat: 43.991254,
-    lng: -77.413151
-  },
-  {
     name: "Harwood Estate Vineyards",
     searchTerm: "Harwood Estate",
     accessCode: "harwood",
@@ -154,12 +147,19 @@ const hillier = [
     accessCode: "trail",
     lat: 43.9793,
     lng: -77.418731
+  },
+  {
+    name: "The Grange of Prince Edward Vineyards and Winery",
+    searchTerm: "The Grange",
+    accessCode: "grange",
+    lat: 43.991254,
+    lng: -77.413151
   }
 ];
 
-vineyards.push(east, central, hillier);
+vineyards.push(hillier, east, central);
 
-const regionName = ["east", "central", "hillier"];
+const regionName = ["hillier", "east", "central"];
 class VineyardList extends React.Component {
   constructor() {
     super();
@@ -168,29 +168,34 @@ class VineyardList extends React.Component {
   render() {
     return (
       <section className="vineyard-list">
-        {vineyards.map((region, i) => {
-          return (
-            <div className={`region-container ${regionName[i]}`}>
-              <h1>{regionName[i]}</h1>
-              <div className="vineyard-containers">
-                {region.map(vineyard => {
-                  return (
-                    <Link
-                      to={`/vineyards/${vineyard.searchTerm}`}
-                      className="vineyard-name"
-                      onClick={() => {
-                        this.props.getAccessCode(vineyard.accessCode);
-                        this.props.vineyardLocation(vineyard.lat, vineyard.lng);
-                      }}
-                    >
-                      {vineyard.name}
-                    </Link>
-                  );
-                })}
+        <div className="wrapper">
+          {vineyards.map((region, i) => {
+            return (
+              <div className={`region-container ${regionName[i]}`}>
+                <h1>{regionName[i]}</h1>
+                <div className="vineyard-containers">
+                  {region.map(vineyard => {
+                    return (
+                      <Link
+                        to={`/vineyards/${vineyard.searchTerm}`}
+                        className="vineyard-name"
+                        onClick={() => {
+                          this.props.getAccessCode(vineyard.accessCode);
+                          this.props.vineyardLocation(
+                            vineyard.lat,
+                            vineyard.lng
+                          );
+                        }}
+                      >
+                        {vineyard.name}
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </section>
     );
   }

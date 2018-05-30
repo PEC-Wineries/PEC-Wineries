@@ -1,58 +1,65 @@
 .vineyard-list {
+	background: transparent;
+	position: relative;
 	height: 100vh;
-	background: #fff;
-	
-	h1 {
-		line-height: 50px;
-	}
+	min-height: 900px; 
 
-	a {
-		font-family: 'Tangerine', cursive;
+	.wrapper {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		min-height: 900px;
+	}
+	a.vineyard-name {
+		font-family: $body-font;
 		text-decoration: none;
-		color: #000;
-		font-size: 35px;
-	}
-
-	.region-container {
-		text-transform: capitalize;
-	}
-
-	.east, .central {
-		height: 30vh;
-
-		.vineyard-name {
-			// width: calc(100%/3);
-			display: block;
-			position: absolute;
-			top: 25%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-		}
-		.vineyard-name:nth-of-type(2) {
-			// left: calc(100%/3);
-			top: 50%;
-			transform: translate(-50%, -50%);
-		}
-		.vineyard-name:nth-of-type(3) {
-			// left: calc(100%/1.5);
-			top: 75%;
-			transform: translate(-50%, -50%);
-		}
-	}
-
-	.hillier {
-		height: 40vh;
-	}
-
-	.vineyard-containers {
-		position: relative;
-		height: calc(100% - 50px);
-		overflow-y: auto;
-	}
-
-	.vineyard-name {
+		font-size: 2rem;
+		font-weight: bold;
+		color:#000;
+		padding: 10px 20px;
+		display: inline-block;
 		text-align: center;
-		display: block;
-	}
-}
+		// background-color: rgba(0, 105, 78, 0.6);
+		background-color: #fff;
+		border: 1px solid black;
+		margin: 0 0 10px 0;
+		width: 50%;
 
+	}
+
+	.east,
+	.central {
+		width: calc(50% - 5px);
+		display: inline-block;
+		a {
+			width: 100%;
+		}
+		margin-top: 25px;
+	}
+
+	.central {
+		margin-left: 10px;
+	}
+
+	h1 {
+		text-transform: capitalize;
+		font-size: 4.0rem;
+		color: #fff;
+		margin: 0 0 25px 0;
+		text-shadow: 1px 1px 10px #000;
+	}
+	.hillier a {
+
+				width: calc(50% - 5px);
+
+		&:nth-child(even) {
+			margin-left: 10px;
+		}
+
+		&:last-child {
+			width: 100%;
+		}
+	}
+
+}

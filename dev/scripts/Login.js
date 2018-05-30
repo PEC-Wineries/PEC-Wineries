@@ -12,16 +12,12 @@ import Dashboard from "./Dashboard";
 class Login extends React.Component {
   render() {
     return (
-      <div>
+      <div className="wrapper">
         {this.props.loggedIn === false && (
-          <button onClick={this.props.loginWithGoogle}>
+          <button className="loginButton" onClick={this.props.loginWithGoogle}>
             Login With Google
           </button>
         )}
-        {/* Turnary operator to display button if logged in */}
-        {this.props.loggedIn === true ? (
-          <button onClick={this.props.logout}>Logout</button>
-        ) : null}
         {/* The dashboard allows users to see wines they have saved on their profile. If they aren't logged in, they won't be able to see this section */}
         {this.props.loggedIn === true && (
           <Dashboard
@@ -31,6 +27,12 @@ class Login extends React.Component {
             userImage={this.props.userImage}
           />
         )}
+        {/* Turnary operator to display button if logged in */}
+        {this.props.loggedIn === true ? (
+          <button className="logoutButton" onClick={this.props.logout}>
+            Logout
+          </button>
+        ) : null}
       </div>
     );
   }

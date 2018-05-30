@@ -13,7 +13,8 @@ class OneVineyard extends React.Component {
   constructor() {
     super();
     this.state = {
-      wines: []
+      wines: [],
+      vinyardName: ""
     };
   }
   componentDidMount() {
@@ -26,63 +27,73 @@ class OneVineyard extends React.Component {
       }
     }).then(res => {
       this.setState({
-        wines: res.data.result
+        wines: res.data.result,
+        vinyardName: res.data.result[0].producer_name
       });
+      console.log(this.state.wines);
     });
   }
   render() {
     return (
       <React.Fragment>
-        <div className="vineyard-wines">
-          {/* {console.log(this.props.wines)} */}
+        <div className="vineyard-wines clearfix wrapper">
+          <h1>{this.state.vinyardName}</h1>
           {this.state.wines.map(wine => {
             return (
-              <div className="display-wine" key={wine.id}>
-                <div
-                  className="wine-image"
-                  key={`wine-image-section = ${wine.id}`}
-                >
-                  <img
-                    src={wine.image_thumb_url}
-                    alt={wine.name}
-                    key={`wine-image = ${wine.id}`}
-                  />
-                </div>
-                <div
-                  className="wine-info"
-                  key={`wine-info-section = ${wine.id}`}
-                >
-                  <ul>
-                    <li className="one-wine-name" key={`name = ${wine.id}`}>
-                      {wine.name}
-                    </li>
-                    <li
-                      className="one-wine-type"
-                      key={`type = ${wine.varietal}`}
+              <React.Fragment>
+                {wine.image_url !== null ? (
+                  <div className="display-wine" key={wine.id}>
+                    <div
+                      className="wine-image"
+                      key={`wine-image-section = ${wine.id}`}
                     >
-                      {wine.varietal}
-                    </li>
-                    <li
-                      className="one-wine-description"
-                      key={`description = ${wine.id}`}
+                      <img
+                        src={wine.image_thumb_url}
+                        alt={wine.name}
+                        key={`wine-image = ${wine.id}`}
+                      />
+                    </div>
+                    <div
+                      className="wine-info"
+                      key={`wine-info-section = ${wine.id}`}
                     >
-                      {wine.tasting_note}
-                    </li>
-                    {this.props.loggedIn === true ? (
-                      <button onClick={() => this.props.saveThisWine(wine)}>
-                        Save This Wine
-                      </button>
-                    ) : null}
-                  </ul>
-                </div>
-              </div>
+                      <ul>
+                        <li className="one-wine-name" key={`name = ${wine.id}`}>
+                          {wine.name}
+                        </li>
+                        {wine.varietal !== null ? (
+                          <li
+                            className="one-wine-type"
+                            key={`type = ${wine.varietal}`}
+                          >
+                            {wine.varietal}
+                          </li>
+                        ) : (
+                          <li> </li>
+                        )}
+                        {/* <li
+                          className="one-wine-description"
+                          key={`description = ${wine.id}`}
+                        >
+                          {wine.tasting_note}
+                        </li> */}
+                        {this.props.loggedIn === true ? (
+                          <button onClick={() => this.props.saveThisWine(wine)}>
+                            Save This Wine
+                          </button>
+                        ) : null}
+                      </ul>
+                    </div>
+                  </div>
+                ) : null}
+              </React.Fragment>
             );
           })}
         </div>
-        <WineTourForm
+        {/* <WineTourForm
           handleChange={this.props.handleChange}
           submitTourForm={this.props.submitTourForm}
-        />
+        /> */}
       </React.Fragment>
     );
   }
