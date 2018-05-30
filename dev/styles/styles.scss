@@ -1,36 +1,49 @@
 @import "setup";
-@import "Header";
-@import "VineyardList";
+@import "utils";
+@import "typography";
+@import "header";
+@import "vineyardList";
 @import "dashboard";
 @import "login";
 @import "oneVineyard";
 @import "savedWines";
 
-// Headings font-family: 'Lora', serif;
-// body font-family: 'Cabin', sans-serif;
+
 
 html {
 	font-size: 62.5%;
 	font-family: 'Cabin', sans-serif;
 }
 
+.wrapper {
+	max-width: 1140px;
+	padding: 0 20px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.header-container {
+	background:  linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(../assets/bg-img.jpeg);
+	background-attachment: fixed;
+	background-position-x: center;
+}
+
 body {
-	background: rgba(30,30,30, 0.8);
 	// background-image: linear-gradient(to right, rgba(60,60,60), rgba(30,30,30));
 	height: 100vh;
 }
 
-h1, h2, h3, h4, h5, h5, ul, li, button, form, input, img {
+h1, h2, h3, h4, h5, h5, ul, li, button, form, input, img, p {
 	margin: 0;
 	padding: 0;
 }
 
-h1, h2, h3, h4, h5, a {
-	font-family: 'Lora', serif;
-	font-size: 3rem;
-	color: #4f007b;
-	text-shadow: 1px 1px rgba(100,100,100,0.6)
-}
+// h1, h2, h3, h4, h5, a {
+// 	font-family: 'Lora', serif;
+// 	font-size: 3rem;
+// 	color: #4f007b;
+// 	text-shadow: 1px 1px rgba(100,100,100,0.6)
+// }
 
 #map {
 	height: 400px;
@@ -68,44 +81,38 @@ h3 {
 	text-align: center;
 }
 
-
-// === Vineyard Wines Page ===
-.display-wine {
-	float: left;
-	max-width: 25%;
-	min-height: 30vh;
-	max-height: 700px;
-	padding: 25px;
-	margin: 50px;
-	background-color: rgba(0, 108, 75, 0.7);
-	border-radius: 10px;
-	box-shadow: 0 15px 15px 0 rgba(25, 25, 25, 0.7);
-
-	div.wine-image {
-		img {
-			display: block;
-			margin: 0 auto;
-			width: 100%;
-		}
+@media (max-width: 1350px) {
+	.wrapper {
+		width: 70%;
 	}
-	.wine-info {
-		ul {
-			margin: 10px 0;
-			
-			.one-wine-name, .one-wine-type {
-				text-align: center;
-			}
-
-			li {
-				list-style-type: none;
-				margin: 10px auto 0;	
-			}
-		}
-	}
-
-
 }
 
-#wineTour {
-	clear: both;
+@media (max-width: 965px) {
+	.wrapper {
+		width: 90%;
+	}
+}
+@media (max-width: 750px) {
+	.wrapper {
+		width: 100%;
+	}
+}
+
+@media (max-width: 675px) {
+	.vineyard-list {
+		min-height: 1100px;
+
+		.wrapper {
+			min-height: 1100px;
+		}
+		.east,
+		.central {
+			width: 100%;
+		}
+		a.vineyard-name {
+			display: block;
+			margin: 10px auto !important;
+			width: 70% !important;
+		}
+	}
 }

@@ -1,0 +1,25 @@
+
+
+.user-image {
+    width: 40px;
+    border-radius: 50%;
+    border: white solid 2px;
+}
+
+
+
+.user-login-bar {
+    margin-bottom: 10px;
+    position:relative;
+    padding: 10px 0;
+
+    img {
+        float:left;
+    }
+    p {
+        position: absolute;
+        top: 50%;
+        left: 70px;
+        transform: translateY(-50%);
+    }
+}

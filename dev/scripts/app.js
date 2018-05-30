@@ -189,21 +189,21 @@ class App extends React.Component {
   }
 
   getAccessCode(token) {
-    const dbRef = firebase.database().ref(`${this.state.uid}/accessCode`);
-    dbRef.remove();
-    this.setState(
-      {
-        accessCode: token
-      },
-      () => {
-        dbRef.push(this.state.accessCode);
-      }
-    );
+    // const dbRef = firebase.database().ref(`${this.state.uid}/accessCode`);
+    // dbRef.remove();
+    // this.setState(
+    //   {
+    //     accessCode: token
+    //   },
+    //   () => {
+    //     dbRef.push(this.state.accessCode);
+    //   }
+    // );
   }
 
   vineyardCodeChange(e) {
-	const vineyardCode = e.target.value;
-	console.log(vineyardCode);
+    const vineyardCode = e.target.value;
+    console.log(vineyardCode);
     this.setState({
       vineyardAccessCode: vineyardCode
     });
@@ -226,22 +226,23 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Route
-            path="/"
-            render={props => (
-              <Login
-                {...props}
-                loginWithGoogle={this.loginWithGoogle}
-                logout={this.logout}
-                loggedIn={this.state.loggedIn}
-                userName={this.state.userName}
-                user={this.state.user}
-                userImage={this.state.userImage}
-              />
-            )}
-          />
-          {/* Added this section - needs to be routed */}
-          {/* <Route
+          <div className="header-container">
+            <Route
+              path="/"
+              render={props => (
+                <Login
+                  {...props}
+                  loginWithGoogle={this.loginWithGoogle}
+                  logout={this.logout}
+                  loggedIn={this.state.loggedIn}
+                  userName={this.state.userName}
+                  user={this.state.user}
+                  userImage={this.state.userImage}
+                />
+              )}
+            />
+            {/* Added this section - needs to be routed */}
+            {/* <Route
 			path="/"
 			render={ props => (
 			<VineyardLogin
@@ -251,63 +252,62 @@ class App extends React.Component {
             vineyardAccessCode={this.state.vineyardAccessCode}
           />)}
 			/> */}
-          <Route exact path="/" render={() => <Header />} />
-
-          <Route
-            exact
-            path="/"
-            render={props => (
-              <VineyardList
-                {...props}
-                getAccessCode={this.getAccessCode}
-                vineyardLocation={this.vineyardLocation}
-              />
-            )}
-          />
-
-          <Route
-            path="/vineyards/:wines"
-            render={props => (
-              <OneVineyard
-                {...props}
-                saveThisWine={this.saveThisWine}
-                saved={this.state.saved}
-                uid={this.state.uid}
-                loggedIn={this.state.loggedIn}
-                submission={this.state.submission}
-                name={this.state.guestName}
-                amount={this.state.amount}
-                date={this.state.date}
-                notes={this.state.notes}
-                handleChange={this.handleChange}
-                submitTourForm={this.submitTourForm}
-              />
-            )}
-          />
-
-          <Route
-            path="/vineyards/:wines"
-            render={props => (
-              <LCBOmap
-                {...props}
-                lat={this.state.vineyardLat}
-                lng={this.state.vineyardLng}
-              />
-            )}
-          />
-
-          <Route
-            path="/vineyards/:wines"
-            render={props =>
-              this.state.loggedIn === true ? (
-                <SavedWines
+            <Route exact path="/" render={() => <Header />} />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <VineyardList
                   {...props}
-                  saved={this.state.saved}
-                  removeThisWine={this.removeThisWine}
+                  getAccessCode={this.getAccessCode}
+                  vineyardLocation={this.vineyardLocation}
                 />
-              ) : null
-            }
-          />
+              )}
+            />
+            <Route
+              path="/vineyards/:wines"
+              render={props => (
+                <OneVineyard
+                  {...props}
+                  saveThisWine={this.saveThisWine}
+                  saved={this.state.saved}
+                  uid={this.state.uid}
+                  loggedIn={this.state.loggedIn}
+                  submission={this.state.submission}
+                  name={this.state.guestName}
+                  amount={this.state.amount}
+                  date={this.state.date}
+                  notes={this.state.notes}
+                  handleChange={this.handleChange}
+                  submitTourForm={this.submitTourForm}
+                />
+              )}
+            />
+
+            <Route
+              path="/vineyards/:wines"
+              render={props => (
+                <LCBOmap
+                  {...props}
+                  lat={this.state.vineyardLat}
+                  lng={this.state.vineyardLng}
+                />
+              )}
+            />
+
+            <Route
+              path="/vineyards/:wines"
+              render={props =>
+                this.state.loggedIn === true ? (
+                  <SavedWines
+                    {...props}
+                    saved={this.state.saved}
+                    removeThisWine={this.removeThisWine}
+                  />
+                ) : null
+              }
+            />
+          </div>
 
           {/* <Login
           loginWithGoogle={this.loginWithGoogle}
