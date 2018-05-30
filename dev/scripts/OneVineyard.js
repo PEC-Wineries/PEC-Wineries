@@ -61,7 +61,7 @@ class OneVineyard extends React.Component {
                         <li className="one-wine-name" key={`name = ${wine.id}`}>
                           {wine.name}
                         </li>
-                        {wine.varietal !== null ? (
+                        {/* {wine.varietal !== null ? (
                           <li
                             className="one-wine-type"
                             key={`type = ${wine.varietal}`}
@@ -70,7 +70,7 @@ class OneVineyard extends React.Component {
                           </li>
                         ) : (
                           <li> </li>
-                        )}
+                        )} */}
                         {/* <li
                           className="one-wine-description"
                           key={`description = ${wine.id}`}
@@ -78,7 +78,10 @@ class OneVineyard extends React.Component {
                           {wine.tasting_note}
                         </li> */}
                         {this.props.loggedIn === true ? (
-                          <button onClick={() => this.props.saveThisWine(wine)}>
+                          <button
+                            className="save-wine"
+                            onClick={() => this.props.saveThisWine(wine)}
+                          >
                             Save This Wine
                           </button>
                         ) : null}

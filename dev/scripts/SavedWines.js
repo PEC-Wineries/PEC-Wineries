@@ -13,7 +13,7 @@ class SavedWines extends React.Component {
     return (
       <React.Fragment>
         <div className="saved-wines clearfix wrapper">
-          <h1>SAVED WINES</h1>
+          <h1>Saved Wines</h1>
           {this.props.saved.map(wine => {
             return (
               <React.Fragment>
@@ -36,7 +36,7 @@ class SavedWines extends React.Component {
                       <li className="one-wine-name" key={`name = ${wine.id}`}>
                         {wine.name}
                       </li>
-                      {wine.varietal !== null ? (
+                      {/* {wine.varietal !== null ? (
                         <li
                           className="one-wine-type"
                           key={`type = ${wine.varietal}`}
@@ -45,14 +45,17 @@ class SavedWines extends React.Component {
                         </li>
                       ) : (
                         <li> </li>
-                      )}
+                      )} */}
                       {/* <li
                         className="one-wine-description"
                         key={`description = ${wine.id}`}
                       >
                         {wine.tasting_note}
                       </li> */}
-                      <button onClick={() => this.props.removeThisWine(wine)}>
+                      <button
+                        className="remove-wine"
+                        onClick={() => this.props.removeThisWine(wine)}
+                      >
                         Remove This Wine
                       </button>
                     </ul>
